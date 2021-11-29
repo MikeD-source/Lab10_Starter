@@ -14,6 +14,7 @@
   <!-- Main Stylesheet & Scripts -->
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script src="assets/scripts/partyHorn.js" type="module"></script>
+  <script src="https://unpkg.com/launchdarkly-js-client-sdk@2"></script>
 </head>
 
 <body>
@@ -42,6 +43,32 @@
       <audio class="hidden" src=""></audio>
     </section>
   </main>
+  <script>
+    var user = {
+      key: 'UNIQUE IDENTIFIER'
+    };
+  
+    //var div = document.createElement('div');
+    //document.body.appendChild(div);
+  
+    //div.appendChild(document.createTextNode('Initializing...'));
+  
+    let r = (Math.random() + 1).toString(36).substring(7);
+    user.key = r;
+    var ldclient = LDClient.initialize('61a46c84ef44260fa01b166a', user);
+  
+    function render() {
+      var shouldShow = ldclient.variation('blue-background', false);
+      if (shouldShow == true) {
+        document.body.classList.add('blue');
+      }
+      //var label = (shouldShow ? 'Showing' : 'Not showing') + ' your feature to ' + user.key;
+      //div.replaceChild(document.createTextNode(label), div.firstChild);
+    }
+  
+    ldclient.on('ready', render);
+    ldclient.on('change', render);
+  </script>
 </body>
 
 </html>

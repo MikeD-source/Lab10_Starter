@@ -1,1 +1,4 @@
 # Lab 10 - Starter
+https://cse110-lab10-miked-source.canny.io/
+
+For the second flag, I also did a background color change, the users will see a white background 50% of the time and a gray backgroud 50% of the time.
